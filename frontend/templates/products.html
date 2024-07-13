@@ -1,39 +1,17 @@
 <!-- ecommerce_platform/frontend/templates/products.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Products</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
 <body>
     <div class="container">
-        <h1 class="mt-5">Products</h1>
-        <div id="product-details" class="row mt-3"></div>
+        <h1>Products</h1>
+        <ul id="products-list"></ul>
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script>
-        const params = new URLSearchParams(window.location.search);
-        const productId = params.get('id');
-
-        $(document).ready(function() {
-            $.get(`http://localhost:8000/products/${productId}`, function(product) {
-                $("#product-details").append(
-                    `<div class="col-md-12">
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <h5 class="card-title">${product.name}</h5>
-                                <p class="card-text">${product.description}</p>
-                                <p class="card-text">$${product.price}</p>
-                            </div>
-                        </div>
-                    </div>`
-                );
-            });
-        });
-    </script>
+    <script src="../static/js/products.js"></script>
 </body>
 </html>

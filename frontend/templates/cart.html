@@ -1,38 +1,17 @@
 <!-- ecommerce_platform/frontend/templates/cart.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cart</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
 <body>
     <div class="container">
-        <h1 class="mt-5">Cart</h1>
-        <div id="cart-items" class="row mt-3"></div>
+        <h1>Cart</h1>
+        <ul id="cart-list"></ul>
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $.get("http://localhost:8001/cart", function(data) {
-                data.forEach(function(cartItem) {
-                    $("#cart-items").append(
-                        `<div class="col-md-12">
-                            <div class="card mb-4">
-                                <div class="card-body">
-                                    <h5 class="card-title">Product ID: ${cartItem.product_id}</h5>
-                                    <p class="card-text">Quantity: ${cartItem.quantity}</p>
-                                    <p class="card-text">User ID: ${cartItem.user_id}</p>
-                                </div>
-                            </div>
-                        </div>`
-                    );
-                });
-            });
-        });
-    </script>
+    <script src="../static/js/cart.js"></script>
 </body>
 </html>

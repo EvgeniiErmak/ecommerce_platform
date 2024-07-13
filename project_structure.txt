@@ -7,6 +7,9 @@ ecommerce_platform
 ├── frontend
 │   ├── index.html
 │   └── templates
+│       ├── cart.html
+│       ├── orders.html
+│       └── products.html
 ├── main.py
 ├── orders
 │   ├── Dockerfile
@@ -21,6 +24,7 @@ ecommerce_platform
 ├── requirements.txt
 ├── scripts
 │   ├── init_cart_db.sh
+│   ├── init_db.sh
 │   ├── init_orders_db.sh
 │   └── init_payments_db.sh
 └── tests

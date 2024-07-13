@@ -61,5 +61,13 @@ services:
     volumes:
       - db_data:/var/lib/postgresql/data
 
+  frontend:
+    image: nginx:alpine
+    container_name: frontend_service
+    volumes:
+      - ./frontend:/usr/share/nginx/html
+    ports:
+      - "80:80"
+
 volumes:
   db_data:
