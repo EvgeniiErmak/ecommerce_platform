@@ -7,7 +7,8 @@ async function fetchCart() {
     cartList.innerHTML = '';
     cartItems.forEach(item => {
         const li = document.createElement('li');
-        li.textContent = `Product ID: ${item.product_id}, Quantity: ${item.quantity}`;
+        li.classList.add('list-group-item');
+        li.textContent = `ID продукта: ${item.product_id}, Количество: ${item.quantity}`;
         cartList.appendChild(li);
     });
 }

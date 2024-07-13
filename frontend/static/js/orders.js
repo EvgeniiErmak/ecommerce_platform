@@ -7,7 +7,8 @@ async function fetchOrders() {
     ordersList.innerHTML = '';
     orders.forEach(order => {
         const li = document.createElement('li');
-        li.textContent = `Order ID: ${order.id}, Cart ID: ${order.cart_id}, Total Price: ${order.total_price}`;
+        li.classList.add('list-group-item');
+        li.textContent = `ID заказа: ${order.id}, ID корзины: ${order.cart_id}, Общая цена: ${order.total_price}`;
         ordersList.appendChild(li);
     });
 }

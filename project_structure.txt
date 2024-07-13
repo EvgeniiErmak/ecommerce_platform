@@ -5,10 +5,22 @@ ecommerce_platform
 │   └── main.py
 ├── docker-compose.yml
 ├── frontend
+│   ├── Dockerfile
 │   ├── index.html
+│   ├── static
+│   │   ├── css
+│   │   │   └── style.css
+│   │   ├── images
+│   │   └── js
+│   │       ├── cart.js
+│   │       ├── orders.js
+│   │       ├── payments.js
+│   │       └── products.js
 │   └── templates
+│       ├── base.html
 │       ├── cart.html
 │       ├── orders.html
+│       ├── payments.html
 │       └── products.html
 ├── main.py
 ├── orders

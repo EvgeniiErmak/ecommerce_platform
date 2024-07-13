@@ -1,18 +1,41 @@
 <!-- ecommerce_platform/frontend/index.html -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Главная страница</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        .navbar {
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">E-commerce Platform</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="templates/products.html">Продукты</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="templates/cart.html">Корзина</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="templates/orders.html">Заказы</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="templates/payments.html">Платежи</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
     <div class="container">
-        <h1>Welcome to the E-commerce Platform</h1>
-        <a href="templates/cart.html">Cart</a>
-        <a href="templates/orders.html">Orders</a>
-        <a href="templates/products.html">Products</a>
+        <h1>Добро пожаловать на платформу электронной коммерции</h1>
+        <p>Используйте навигацию, чтобы перейти к различным разделам.</p>
     </div>
 </body>
 </html>

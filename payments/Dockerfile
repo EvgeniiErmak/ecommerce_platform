@@ -10,4 +10,6 @@ RUN go mod init payments
 RUN go mod tidy
 RUN go build -o main .
 
+EXPOSE 8003
+
 CMD ["./main"]
