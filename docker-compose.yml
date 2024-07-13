@@ -3,7 +3,8 @@ version: '3.8'
 services:
   products:
     build:
-      context: ./products
+      context: .
+      dockerfile: products/Dockerfile
     container_name: products_service
     ports:
       - "8000:8000"
@@ -14,7 +15,8 @@ services:
 
   cart:
     build:
-      context: ./cart
+      context: .
+      dockerfile: cart/Dockerfile
     container_name: cart_service
     ports:
       - "8001:8001"
@@ -25,7 +27,8 @@ services:
 
   orders:
     build:
-      context: ./orders
+      context: .
+      dockerfile: orders/Dockerfile
     container_name: orders_service
     ports:
       - "8002:8002"
@@ -37,6 +40,7 @@ services:
   payments:
     build:
       context: ./payments
+      dockerfile: Dockerfile
     container_name: payments_service
     ports:
       - "8003:8003"

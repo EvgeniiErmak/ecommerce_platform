@@ -82,3 +82,8 @@ def delete_product(product_id: int):
     if deleted_id is None:
         raise HTTPException(status_code=404, detail="Product not found")
     return {"message": "Product deleted successfully"}
+
+
+@app.get("/")
+def read_root():
+    return {"message": "Products service is running"}

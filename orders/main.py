@@ -81,3 +81,8 @@ def delete_order(order_id: int):
     if deleted_id is None:
         raise HTTPException(status_code=404, detail="Order not found")
     return {"message": "Order deleted successfully"}
+
+
+@app.get("/")
+def read_root():
+    return {"message": "Orders service is running"}

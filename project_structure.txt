@@ -1,0 +1,27 @@
+ecommerce_platform
+├── README.md
+├── cart
+│   ├── Dockerfile
+│   └── main.py
+├── docker-compose.yml
+├── frontend
+│   ├── index.html
+│   └── templates
+├── main.py
+├── orders
+│   ├── Dockerfile
+│   └── main.py
+├── payments
+│   ├── Dockerfile
+│   └── main.go
+├── products
+│   ├── Dockerfile
+│   └── main.py
+├── project_structure.txt
+├── requirements.txt
+├── scripts
+│   ├── init_cart_db.sh
+│   ├── init_orders_db.sh
+│   └── init_payments_db.sh
+└── tests
+    └── test_products.py

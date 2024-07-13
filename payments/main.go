@@ -6,7 +6,6 @@ import (
 	"database/sql"
 	"encoding/json"
 	"net/http"
-	"strconv"
 
 	_ "github.com/lib/pq"
 	"github.com/gorilla/mux"

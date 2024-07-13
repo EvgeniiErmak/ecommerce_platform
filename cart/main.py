@@ -69,3 +69,8 @@ def delete_cart_item(cart_item_id: int):
     if deleted_id is None:
         raise HTTPException(status_code=404, detail="Cart item not found")
     return {"message": "Cart item deleted successfully"}
+
+
+@app.get("/")
+def read_root():
+    return {"message": "Cart service is running"}
