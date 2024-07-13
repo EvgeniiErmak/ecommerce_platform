@@ -1,14 +1,18 @@
 # ecommerce_platform/cart/main.py
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
+from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel
 from typing import List
 import psycopg2
 from psycopg2.extras import RealDictCursor
+import os
 
 app = FastAPI()
 
-DATABASE_URL = "postgresql://postgres:12345@db/cart_db"
+DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://postgres:12345@db/cart_db")
+
+templates = Jinja2Templates(directory="/frontend/templates")
 
 
 class CartItem(BaseModel):
@@ -72,5 +76,5 @@ def delete_cart_item(cart_item_id: int):
 
 
 @app.get("/")
-def read_root():
-    return {"message": "Cart service is running"}
+def read_root(request: Request):
+    return templates.TemplateResponse("cart.html", {"request": request, "message": "Cart service is running"})

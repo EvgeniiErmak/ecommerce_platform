@@ -1,17 +1,11 @@
 <!-- ecommerce_platform/frontend/templates/orders.html -->
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Заказы</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-</head>
-<body>
-    <div class="container">
-        <h1>Заказы</h1>
-        <ul id="orders-list" class="list-group"></ul>
-    </div>
-    <script src="../static/js/orders.js"></script>
-</body>
-</html>
+
+{% extends "base.html" %}
+{% block title %}Заказы{% endblock %}
+{% block content %}
+<h1>Заказы</h1>
+<ul id="orders-list" class="list-group"></ul>
+{% endblock %}
+{% block scripts %}
+<script src="/static/js/orders.js"></script>
+{% endblock %}

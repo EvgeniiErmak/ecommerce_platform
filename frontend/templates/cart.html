@@ -1,17 +1,11 @@
 <!-- ecommerce_platform/frontend/templates/cart.html -->
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Корзина</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-</head>
-<body>
-    <div class="container">
-        <h1>Корзина</h1>
-        <ul id="cart-list" class="list-group"></ul>
-    </div>
-    <script src="../static/js/cart.js"></script>
-</body>
-</html>
+
+{% extends "base.html" %}
+{% block title %}Корзина{% endblock %}
+{% block content %}
+<h1>Корзина</h1>
+<ul id="cart-list" class="list-group"></ul>
+{% endblock %}
+{% block scripts %}
+<script src="/static/js/cart.js"></script>
+{% endblock %}

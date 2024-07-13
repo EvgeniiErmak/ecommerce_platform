@@ -1,14 +1,18 @@
 # ecommerce_platform/orders/main.py
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
+from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel
 from typing import List
 import psycopg2
 from psycopg2.extras import RealDictCursor
+import os
 
 app = FastAPI()
 
-DATABASE_URL = "postgresql://postgres:12345@db/orders_db"
+DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://postgres:12345@db/orders_db")
+
+templates = Jinja2Templates(directory="/frontend/templates")
 
 
 class Order(BaseModel):
@@ -84,5 +88,5 @@ def delete_order(order_id: int):
 
 
 @app.get("/")
-def read_root():
-    return {"message": "Orders service is running"}
+def read_root(request: Request):
+    return templates.TemplateResponse("orders.html", {"request": request, "message": "Orders service is running"})

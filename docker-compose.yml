@@ -49,6 +49,19 @@ services:
     depends_on:
       - db
 
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: frontend_service
+    ports:
+      - "80:80"
+    depends_on:
+      - products
+      - cart
+      - orders
+      - payments
+
   db:
     image: postgres:13
     container_name: db
@@ -60,14 +73,6 @@ services:
       - "5432:5432"
     volumes:
       - db_data:/var/lib/postgresql/data
-
-  frontend:
-    image: nginx:alpine
-    container_name: frontend_service
-    volumes:
-      - ./frontend:/usr/share/nginx/html
-    ports:
-      - "80:80"
 
 volumes:
   db_data:

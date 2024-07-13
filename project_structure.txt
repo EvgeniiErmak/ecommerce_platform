@@ -1,4 +1,4 @@
-ecommerce_platform
+.
 ├── README.md
 ├── cart
 │   ├── Dockerfile
@@ -19,6 +19,7 @@ ecommerce_platform
 │   └── templates
 │       ├── base.html
 │       ├── cart.html
+│       ├── index.html
 │       ├── orders.html
 │       ├── payments.html
 │       └── products.html
@@ -41,3 +42,5 @@ ecommerce_platform
 │   └── init_payments_db.sh
 └── tests
     └── test_products.py
+
+13 directories, 31 files
