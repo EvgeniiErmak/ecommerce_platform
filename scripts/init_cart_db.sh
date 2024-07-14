@@ -3,6 +3,7 @@
 # ecommerce_platform/scripts/init_cart_db.sh
 
 set -e
+echo "Initializing cart_db"
 
 psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-EOSQL
     SELECT 'CREATE DATABASE cart_db'

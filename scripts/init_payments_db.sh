@@ -3,6 +3,7 @@
 # ecommerce_platform/scripts/init_payments_db.sh
 
 set -e
+echo "Initializing payments_db"
 
 psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-EOSQL
     SELECT 'CREATE DATABASE payments_db'

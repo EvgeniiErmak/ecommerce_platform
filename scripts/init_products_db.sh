@@ -3,8 +3,7 @@
 # ecommerce_platform/scripts/init_products_db.sh
 
 set -e
-
-echo "Running init_products_db.sh..."
+echo "Initializing products_db"
 
 psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-EOSQL
     SELECT 'CREATE DATABASE products_db'
@@ -19,5 +18,3 @@ psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "products_db" <<-EO
         price DECIMAL(10, 2) NOT NULL
     );
 EOSQL
-
-echo "Finished init_products_db.sh"
