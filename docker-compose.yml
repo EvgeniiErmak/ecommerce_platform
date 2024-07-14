@@ -1,4 +1,6 @@
-version: '3.8'
+# ecommerce_platform/docker-compose.yml
+
+version: '3.9'
 
 services:
   db:
@@ -7,11 +9,15 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 12345
-      POSTGRES_DB: products_db
+      POSTGRES_DB: postgres
     ports:
       - "5432:5432"
     volumes:
       - db_data:/var/lib/postgresql/data
+      - ./scripts/init_products_db.sh:/docker-entrypoint-initdb.d/init_products_db.sh
+      - ./scripts/init_cart_db.sh:/docker-entrypoint-initdb.d/init_cart_db.sh
+      - ./scripts/init_orders_db.sh:/docker-entrypoint-initdb.d/init_orders_db.sh
+      - ./scripts/init_payments_db.sh:/docker-entrypoint-initdb.d/init_payments_db.sh
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 10s

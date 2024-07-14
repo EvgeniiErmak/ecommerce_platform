@@ -39,9 +39,6 @@ print(f"Current working directory: {os.getcwd()}")
 print(f"Templates directory: {os.path.abspath('frontend/templates')}")
 print(f"Files in templates directory: {os.listdir('frontend/templates')}")
 
-# Инициализация баз данных
-init_db()
-
 # Инициализация FastAPI
 app = FastAPI()
 
@@ -75,4 +72,4 @@ async def payments(request: Request):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8004)
+    uvicorn.run(app, host="127.0.0.1", port=8000)
