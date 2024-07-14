@@ -1,6 +1,23 @@
 version: '3.8'
 
 services:
+  db:
+    image: postgres:13
+    container_name: db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 12345
+      POSTGRES_DB: products_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
   products:
     build:
       context: .
@@ -11,7 +28,8 @@ services:
     environment:
       - DATABASE_URL=postgresql://postgres:12345@db/products_db
     depends_on:
-      - db
+      db:
+        condition: service_healthy
 
   cart:
     build:
@@ -23,7 +41,8 @@ services:
     environment:
       - DATABASE_URL=postgresql://postgres:12345@db/cart_db
     depends_on:
-      - db
+      db:
+        condition: service_healthy
 
   orders:
     build:
@@ -35,7 +54,8 @@ services:
     environment:
       - DATABASE_URL=postgresql://postgres:12345@db/orders_db
     depends_on:
-      - db
+      db:
+        condition: service_healthy
 
   payments:
     build:
@@ -47,7 +67,8 @@ services:
     environment:
       - DATABASE_URL=postgresql://postgres:12345@db/payments_db
     depends_on:
-      - db
+      db:
+        condition: service_healthy
 
   frontend:
     build:
@@ -62,17 +83,16 @@ services:
       - orders
       - payments
 
-  db:
-    image: postgres:13
-    container_name: db
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 12345
-      POSTGRES_DB: products_db
+  main_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: main_app
     ports:
-      - "5432:5432"
-    volumes:
-      - db_data:/var/lib/postgresql/data
+      - "8004:8004"
+    depends_on:
+      db:
+        condition: service_healthy
 
 volumes:
   db_data:
