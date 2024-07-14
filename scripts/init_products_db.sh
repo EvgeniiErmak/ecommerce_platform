@@ -4,6 +4,8 @@
 
 set -e
 
+echo "Running init_products_db.sh..."
+
 psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-EOSQL
     SELECT 'CREATE DATABASE products_db'
     WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'products_db')\gexec
@@ -17,3 +19,5 @@ psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "products_db" <<-EO
         price DECIMAL(10, 2) NOT NULL
     );
 EOSQL
+
+echo "Finished init_products_db.sh"
