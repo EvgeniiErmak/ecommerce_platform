@@ -9,6 +9,56 @@ import os
 import psycopg2
 
 
+def create_tables(dbname):
+    conn = psycopg2.connect(dbname=dbname, user="postgres", password="12345", host="localhost", port="5432")
+    conn.autocommit = True
+    cursor = conn.cursor()
+
+    # Определение SQL запросов для создания таблиц
+    tables = {
+        "products_db": """
+        CREATE TABLE IF NOT EXISTS products (
+            id SERIAL PRIMARY KEY,
+            name VARCHAR(100),
+            description TEXT,
+            price DECIMAL
+        );
+        """,
+        "cart_db": """
+        CREATE TABLE IF NOT EXISTS cart (
+            id SERIAL PRIMARY KEY,
+            user_id INTEGER,
+            product_id INTEGER,
+            quantity INTEGER
+        );
+        """,
+        "orders_db": """
+        CREATE TABLE IF NOT EXISTS orders (
+            id SERIAL PRIMARY KEY,
+            user_id INTEGER,
+            product_id INTEGER,
+            quantity INTEGER,
+            total_price DECIMAL
+        );
+        """,
+        "payments_db": """
+        CREATE TABLE IF NOT EXISTS payments (
+            id SERIAL PRIMARY KEY,
+            order_id INTEGER,
+            payment_date TIMESTAMP,
+            amount DECIMAL
+        );
+        """
+    }
+
+    # Выполнение SQL запросов для создания таблиц
+    if dbname in tables:
+        cursor.execute(tables[dbname])
+
+    cursor.close()
+    conn.close()
+
+
 # Инициализация баз данных
 def init_db():
     try:
@@ -28,6 +78,9 @@ def init_db():
                 print(f"Database {db} created successfully.")
             else:
                 print(f"Database {db} already exists.")
+
+            # Создание таблиц в базе данных
+            create_tables(db)
 
         cursor.close()
         conn.close()
