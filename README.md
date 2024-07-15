@@ -1,12 +1,13 @@
+```markdown
 # E-commerce Platform
 
 ## Описание
 
-Проект представляет собой платформу электронной коммерции, построенную с использованием микросервисной архитектуры. Каждый микросервис реализует отдельную функциональность, такую как управление продуктами, корзиной, заказами и платежами. Проект использует FastAPI для создания API и Docker для контейнеризации.
+Этот проект представляет собой платформу электронной коммерции, состоящую из нескольких микросервисов, включая управление продуктами, корзиной, заказами и платежами. Платформа построена с использованием FastAPI для микросервисов и PostgreSQL в качестве базы данных.
 
 ## Структура проекта
 
-```plaintext
+```
 ecommerce_platform
 ├── Dockerfile
 ├── README.md
@@ -55,119 +56,139 @@ ecommerce_platform
     └── test_products.py
 ```
 
-## Установка
+## Установка и запуск
 
-### Предварительные требования
+### Требования
 
 - Docker
 - Docker Compose
-- Python 3.9+
-- pip
 
-### Запуск проекта
+### Шаги установки
 
 1. Клонируйте репозиторий:
+    ```bash
+    git clone https://github.com/yourusername/ecommerce_platform.git
+    cd ecommerce_platform
+    ```
 
-```bash
-git clone https://github.com/your-repository-url/ecommerce_platform.git
-cd ecommerce_platform
-```
+2. Создайте и запустите контейнеры Docker:
+    ```bash
+    docker-compose up --build
+    ```
 
-2. Установите зависимости Python:
+### Доступ к микросервисам
 
-```bash
-pip install -r requirements.txt
-```
+- Главная страница: [http://localhost:8000](http://localhost:8000)
+- Сервис продуктов: [http://localhost:8000/products](http://localhost:8000/products)
+- Сервис корзины: [http://localhost:8001/cart](http://localhost:8001/cart)
+- Сервис заказов: [http://localhost:8002/orders](http://localhost:8002/orders)
+- Сервис платежей: [http://localhost:8003/payments](http://localhost:8003/payments)
 
-3. Запустите Docker Compose:
+### Документация API
 
-```bash
-docker-compose up --build
-```
+Документация для каждого микросервиса доступна по следующим URL:
 
-Проект будет доступен по адресу `http://localhost:8000`.
+- Продукты: [http://localhost:8000/docs](http://localhost:8000/docs)
+- Корзина: [http://localhost:8001/docs](http://localhost:8001/docs)
+- Заказы: [http://localhost:8002/docs](http://localhost:8002/docs)
+- Платежи: [http://localhost:8003/docs](http://localhost:8003/docs)
 
-## API Документация
+## Структура каталогов и файлов
 
-Каждый микросервис имеет свою документацию, доступную через Swagger:
+### Корневой каталог
 
-- **Главный сервис**: `http://localhost:8000/docs`
-- **Сервис корзины**: `http://localhost:8001/docs`
-- **Сервис заказов**: `http://localhost:8002/docs`
-- **Сервис продуктов**: `http://localhost:8003/docs`
-- **Сервис платежей**: `http://localhost:8004/docs`
+- `Dockerfile`: Основной Dockerfile для сборки образа всего приложения.
+- `README.md`: Документация проекта.
+- `docker-compose.yml`: Файл для управления контейнерами с помощью Docker Compose.
+- `requirements.txt`: Список зависимостей Python для установки через pip.
+
+### Каталог `cart`
+
+- `Dockerfile`: Dockerfile для сервиса корзины.
+- `main.py`: Основной файл сервиса корзины, реализующий API.
+
+### Каталог `orders`
+
+- `Dockerfile`: Dockerfile для сервиса заказов.
+- `main.py`: Основной файл сервиса заказов, реализующий API.
+
+### Каталог `payments`
+
+- `Dockerfile`: Dockerfile для сервиса платежей.
+- `main.go`: Основной файл сервиса платежей, реализующий API.
+
+### Каталог `products`
+
+- `Dockerfile`: Dockerfile для сервиса продуктов.
+- `main.py`: Основной файл сервиса продуктов, реализующий API.
+
+### Каталог `frontend`
+
+- `Dockerfile`: Dockerfile для фронтенда.
+- `index.html`: Главная страница фронтенда.
+- `static/css/style.css`: Стили для фронтенда.
+- `static/images/background.jpg`: Фоновое изображение.
+- `static/js/cart.js`: JavaScript для страницы корзины.
+- `static/js/orders.js`: JavaScript для страницы заказов.
+- `static/js/payments.js`: JavaScript для страницы платежей.
+- `static/js/products.js`: JavaScript для страницы продуктов.
+- `templates/base.html`: Базовый шаблон.
+- `templates/cart.html`: Шаблон страницы корзины.
+- `templates/index.html`: Шаблон главной страницы.
+- `templates/orders.html`: Шаблон страницы заказов.
+- `templates/payments.html`: Шаблон страницы платежей.
+- `templates/products.html`: Шаблон страницы продуктов.
+
+### Каталог `scripts`
+
+- `init_cart_db.sh`: Скрипт инициализации базы данных корзины.
+- `init_orders_db.sh`: Скрипт инициализации базы данных заказов.
+- `init_payments_db.sh`: Скрипт инициализации базы данных платежей.
+- `init_products_db.sh`: Скрипт инициализации базы данных продуктов.
+
+### Каталог `tests`
+
+- `test_products.py`: Тесты для сервиса продуктов.
 
 ## Описание микросервисов
 
-### Главный сервис (`main.py`)
+### Сервис продуктов
 
-Главный сервис отвечает за отображение фронтенда и инициализацию баз данных. Он содержит маршруты для отображения страниц продуктов, корзины, заказов и платежей.
+Сервис для управления продуктами. Реализует следующие конечные точки:
 
-### Сервис корзины (`cart/main.py`)
+- `GET /products`: Получение списка продуктов.
+- `GET /products/{product_id}`: Получение информации о продукте.
+- `POST /products`: Добавление нового продукта.
+- `PUT /products/{product_id}`: Обновление информации о продукте.
+- `DELETE /products/{product_id}`: Удаление продукта.
 
-Сервис корзины управляет товарами в корзине пользователей. Он предоставляет API для получения, добавления, обновления и удаления товаров из корзины.
+### Сервис корзины
 
-### Сервис заказов (`orders/main.py`)
+Сервис для управления корзиной пользователя. Реализует следующие конечные точки:
 
-Сервис заказов управляет заказами пользователей. Он предоставляет API для получения, создания, обновления и удаления заказов.
+- `GET /cart`: Получение содержимого корзины.
+- `POST /cart`: Добавление товара в корзину.
+- `PUT /cart/{cart_item_id}`: Обновление товара в корзине.
+- `DELETE /cart/{cart_item_id}`: Удаление товара из корзины.
 
-### Сервис продуктов (`products/main.py`)
+### Сервис заказов
 
-Сервис продуктов управляет информацией о продуктах. Он предоставляет API для получения, создания, обновления и удаления продуктов.
+Сервис для управления заказами. Реализует следующие конечные точки:
 
-### Сервис платежей (`payments/main.go`)
+- `GET /orders`: Получение списка заказов.
+- `GET /orders/{order_id}`: Получение информации о заказе.
+- `POST /orders`: Создание нового заказа.
+- `PUT /orders/{order_id}`: Обновление заказа.
+- `DELETE /orders/{order_id}`: Удаление заказа.
 
-Сервис платежей управляет платежами пользователей. Он предоставляет API для обработки платежей.
+### Сервис платежей
 
-## Пример использования API
+Сервис для управления платежами. Реализует следующие конечные точки:
 
-### Получение списка продуктов
+- `GET /payments`: Получение списка платежей.
+- `GET /payments/{payment_id}`: Получение информации о платеже.
+- `POST /payments`: Создание нового платежа.
+- `PUT /payments/{payment_id}`: Обновление информации о платеже.
+- `DELETE /payments/{payment_id}`: Удаление платежа.
 
-```bash
-curl -X 'GET' \
-  'http://localhost:8003/products' \
-  -H 'accept: application/json'
 ```
-
-### Добавление продукта в корзину
-
-```bash
-curl -X 'POST' \
-  'http://localhost:8001/cart' \
-  -H 'accept: application/json' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "product_id": 1,
-  "quantity": 2
-}'
-```
-
-### Создание заказа
-
-```bash
-curl -X 'POST' \
-  'http://localhost:8002/orders' \
-  -H 'accept: application/json' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "cart_id": 1,
-  "total_price": 100.0
-}'
-```
-
-### Обработка платежа
-
-```bash
-curl -X 'POST' \
-  'http://localhost:8004/payments' \
-  -H 'accept: application/json' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "order_id": 1,
-  "amount": 100.0
-}'
-```
-
-## Контакты
-
-Если у вас есть вопросы или предложения, пожалуйста, свяжитесь с нами по адресу `ew.ermak5000@mail.ru`.
