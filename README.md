@@ -170,8 +170,10 @@ curl -X 'POST' \
 
 ## Контакты
 
-Евгений Ермак
-Тел.: +7 930-290-99-80
-Telegram: @DJErmak3000
-LinkedIn: www.linkedin.com/in/evgeniiermak
+Евгений ЕрмакТел.: '+7 930-290-99-80'.
+
+Telegram: '@DJErmak3000'.
+
+LinkedIn: 'www.linkedin.com/in/evgeniiermak'.
+
 Е-mail: `ew.ermak5000@mail.ru`.
