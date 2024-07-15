@@ -94,7 +94,7 @@ print(f"Templates directory: {os.path.abspath('frontend/templates')}")
 print(f"Files in templates directory: {os.listdir('frontend/templates')}")
 
 # Инициализация FastAPI
-app = FastAPI()
+app = FastAPI(title="E-commerce Platform API", description="API для управления платформой электронной коммерции", version="1.0")
 
 app.mount("/static", StaticFiles(directory="frontend/static"), name="static")
 templates = Jinja2Templates(directory="frontend/templates")

@@ -8,7 +8,7 @@ import psycopg2
 from psycopg2.extras import RealDictCursor
 import os
 
-app = FastAPI()
+app = FastAPI(title="Cart API", description="API для управления корзиной", version="1.0")
 
 DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://postgres:12345@db/cart_db")
 

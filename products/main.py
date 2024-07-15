@@ -8,7 +8,7 @@ import psycopg2
 from psycopg2.extras import RealDictCursor
 import os
 
-app = FastAPI()
+app = FastAPI(title="Products API", description="API для управления продуктами", version="1.0")
 
 DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://postgres:12345@db/products_db")
 
