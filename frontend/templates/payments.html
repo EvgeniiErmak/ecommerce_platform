@@ -3,8 +3,22 @@
 {% extends "base.html" %}
 {% block title %}Платежи{% endblock %}
 {% block content %}
-<h1>Платежи</h1>
-<ul id="payments-list" class="list-group"></ul>
+<div class="main-content">
+    <h1 class="text-center">Платежи</h1>
+    <ul id="payments-list" class="list-group mb-4"></ul>
+    <h2 class="text-center">Создать новый платеж</h2>
+    <form id="payments-form" class="form-inline justify-content-center">
+        <div class="form-group mx-2">
+            <label for="order_id" class="sr-only">ID заказа</label>
+            <input type="number" id="order_id" name="order_id" class="form-control" placeholder="ID заказа">
+        </div>
+        <div class="form-group mx-2">
+            <label for="amount" class="sr-only">Сумма</label>
+            <input type="number" id="amount" name="amount" class="form-control" placeholder="Сумма">
+        </div>
+        <button type="submit" class="btn btn-primary">Создать платеж</button>
+    </form>
+</div>
 {% endblock %}
 {% block scripts %}
 <script src="/static/js/payments.js"></script>
